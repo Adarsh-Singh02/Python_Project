@@ -1,14 +1,5 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'neweva.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-from score import Ui_Dialog as Score  # Score window
+from score import Ui_Dialog as Score  
 import sqlite3
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -17,7 +8,7 @@ matchcur = match.cursor()
 
 
 class Ui_MainWindow(object):
-    def __init__(self):  # initialising score window
+    def __init__(self): 
         self.scoreDialog = QtWidgets.QMainWindow()
         self.score_screen = Score()
         self.score_screen.setupUi(self.scoreDialog)
@@ -124,8 +115,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget1)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        # COMBOBOXES
-        # TEAMNAME COMBOBOX
+  
         self.selectteam_cb = QtWidgets.QComboBox(self.widget1)
         self.selectteam_cb.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.selectteam_cb.setCurrentText("")
@@ -138,7 +128,7 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
-        # MATCHNAME COMBOBX
+     
         self.selectmatch_cb.setFont(font)
         self.selectmatch_cb.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.selectmatch_cb.setObjectName("selectmatch_cb")
@@ -155,13 +145,13 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        # score button
+
         self.calcscore_btn.clicked.connect(self.final_score)
         selected_team = self.selectteam_cb.currentText()
 
         self.changedname(selected_team)
 
-        # upon current team name- changed
+  
         self.selectteam_cb.currentTextChanged.connect(self.changedname)
 
     def retranslateUi(self, MainWindow):
@@ -194,14 +184,14 @@ class Ui_MainWindow(object):
 
     def final_score(self):
         total_score = 0
-        t = self.selectteam_cb.currentText()  # current teamname
+        t = self.selectteam_cb.currentText() 
         logging.debug(t)
         z = matchcur.execute("SELECT value from teams WHERE name='" + t + "';")
         value = z.fetchall()
         logging.debug('value', value)
         for k in value:
             total_score += k[0]
-        self.score_screen.finalscore.setText(str(total_score))  # opening score dialog box and setting final score
+        self.score_screen.finalscore.setText(str(total_score))  
         self.scoreDialog.show()
 
 
