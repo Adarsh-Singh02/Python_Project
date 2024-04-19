@@ -1,29 +1,21 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'newfant.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
 from points_calculator import player_points
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
-from open import Ui_Dialog as Open  # importing open window dialogbox
-from new import Ui_Dialog as New  # importing new window dialogbox
-from neweva import Ui_MainWindow as Eva  # importing evaluate window
+from open import Ui_Dialog as Open  
+from new import Ui_Dialog as New  
+from neweva import Ui_MainWindow as Eva 
 
 import sqlite3
 import logging
 
-fant = sqlite3.connect('fandatabase.db')  # connecting to database file(fandatabase.db)
+fant = sqlite3.connect('fandatabase.db') 
 fantcurs = fant.cursor()
 logging.basicConfig(level=logging.INFO)
 
 class Ui_MainWindow(object):
     def __init__(self):
-        # INITIALISING WINDOWS
+     
         self.newDialog = QtWidgets.QMainWindow()
         self.new_screen = New()
         self.new_screen.setupUi(self.newDialog)
@@ -36,25 +28,25 @@ class Ui_MainWindow(object):
         self.open_screen = Open()
         self.open_screen.setupUi(self.openDialog)
 
-        # FILE OPENING MENU
+       
 
     def file_open(self):
         self.open_screen.setupUi(self.openDialog)
         self.openDialog.show()
         self.open_screen.openbtn.clicked.connect(self.openteam)
 
-        # EVALUATE TEAM MENU
+      
 
     def file_evaluate(self):
         self.eval_screen.setupUi(self.EvaluateWindow)
         self.EvaluateWindow.show()
 
-    # NEW FILE MENU
+ 
     def file_new(self):
         self.newDialog.show()
 
     def setupUi(self, MainWindow):
-        # INITIALISING POINTS AND COUNTS
+       
         self.avail_points = 1000
         self.used_points = 0
         self.totalcount = 0
@@ -63,12 +55,12 @@ class Ui_MainWindow(object):
         self.alrdscount = 0
         self.wicketerscount = 0
 
-        # INITIALIZING LISTS
-        self.a = []  # bowler names list
-        self.b = []  # batsman nameslist
-        self.c = []  # allrounder names list
-        self.d = []  # wicketer names list
-        self.list1 = []  # selectedplayer's list
+       
+        self.a = []  
+        self.b = []  
+        self.c = []  
+        self.d = []  
+        self.list1 = []  
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(708, 692)
@@ -98,7 +90,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
 
-        # TEAMNAME
+     
         self.team_name.setFont(font)
         self.team_name.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.team_name.setAlignment(QtCore.Qt.AlignCenter)
@@ -156,7 +148,7 @@ class Ui_MainWindow(object):
         self.Batsman.setIndent(1)
         self.Batsman.setObjectName("Batsman")
 
-         #BATSMEN COUNTER
+        
         self.batcount = QtWidgets.QLabel(self.centralwidget)
         self.batcount.setGeometry(QtCore.QRect(140, 80, 31, 51))
         font = QtGui.QFont()
@@ -183,7 +175,7 @@ class Ui_MainWindow(object):
         self.Bowlers.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.Bowlers.setObjectName("Bowlers")
 
-        #ALROUNDERS COUNTER
+      
         self.alrcount = QtWidgets.QLabel(self.centralwidget)
         self.alrcount.setGeometry(QtCore.QRect(480, 80, 41, 51))
         font = QtGui.QFont()
@@ -197,7 +189,7 @@ class Ui_MainWindow(object):
         self.alrcount.setIndent(10)
         self.alrcount.setObjectName("alrcount")
 
-        # BOWLERS COUNTER
+      
         self.bowlcount = QtWidgets.QLabel(self.centralwidget)
         self.bowlcount.setGeometry(QtCore.QRect(650, 80, 51, 51))
         font = QtGui.QFont()
@@ -217,8 +209,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
 
-                #RADDO BUTTONS
-        #WICKETKEEPER
+         
         self.wk_rb = QtWidgets.QRadioButton(self.widget)
         self.wk_rb.setEnabled(False)
         font = QtGui.QFont()
@@ -231,7 +222,7 @@ class Ui_MainWindow(object):
         self.wk_rb.setObjectName("wk_rb")
         self.horizontalLayout.addWidget(self.wk_rb)
 
-        #BATSMAN
+     
         self.bat_rb = QtWidgets.QRadioButton(self.widget)
         self.bat_rb.setEnabled(False)
         font = QtGui.QFont()
@@ -246,7 +237,7 @@ class Ui_MainWindow(object):
         self.bat_rb.setObjectName("bat_rb")
         self.horizontalLayout.addWidget(self.bat_rb)
 
-        #ALLROUNDER
+      
 
         self.ar_rb = QtWidgets.QRadioButton(self.widget)
         self.ar_rb.setEnabled(False)
@@ -261,7 +252,7 @@ class Ui_MainWindow(object):
         self.ar_rb.setObjectName("ar_rb")
         self.horizontalLayout.addWidget(self.ar_rb)
 
-        #BOWLER
+    
         self.bow_rb = QtWidgets.QRadioButton(self.widget)
         self.bow_rb.setEnabled(False)
         font = QtGui.QFont()
@@ -293,7 +284,7 @@ class Ui_MainWindow(object):
         self.Totalplayers.setObjectName("Totalplayers")
         self.horizontalLayout_2.addWidget(self.Totalplayers)
 
-            #AVAILABLE POINTS
+           
 
         self.points_available = QtWidgets.QLabel(self.widget1)
         font = QtGui.QFont()
@@ -319,7 +310,7 @@ class Ui_MainWindow(object):
         self.TeamName.setIndent(100)
         self.TeamName.setObjectName("TeamName")
         self.horizontalLayout_2.addWidget(self.TeamName)
-        # POINTS USED
+       
         self.points_used = QtWidgets.QLabel(self.widget1)
         font = QtGui.QFont()
         font.setFamily("Bookman Old Style")
@@ -328,7 +319,7 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setWeight(75)
 
-            #POINTS USED COUNTER
+       
         self.points_used.setFont(font)
         self.points_used.setStyleSheet("color:rgb(133, 255, 174)")
         self.points_used.setAlignment(QtCore.Qt.AlignJustify | QtCore.Qt.AlignVCenter)
@@ -354,8 +345,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
 
-            #LISTWIDGET
-        #AVAILABLEPLAYERS
+       
         self.availplayers_lw = QtWidgets.QListWidget(self.widget2)
         self.availplayers_lw.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.availplayers_lw.setObjectName("availplayers_lw")
@@ -375,7 +365,7 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
 
-        # SELECTEDPLAYERS
+     
         self.selectedplayers_lw.setPalette(palette)
         self.selectedplayers_lw.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.selectedplayers_lw.setObjectName("selectedplayers_lw")
@@ -408,28 +398,27 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-                # SHORTCUTS
-        # NEWTEAM
+            
         self.new_team = QtWidgets.QAction(MainWindow)
         self.new_team.setShortcutVisibleInContextMenu(True)
         self.new_team.setObjectName("new_team")
         self.new_team.triggered.connect(self.file_new)
-        # OPENTEAM
+       
         self.open_team = QtWidgets.QAction(MainWindow)
         self.open_team.setShortcutVisibleInContextMenu(True)
         self.open_team.setObjectName("open_team")
         self.open_team.triggered.connect(self.file_open)
-        # SAVETEAM
+       
         self.save_team = QtWidgets.QAction(MainWindow)
         self.save_team.setShortcutVisibleInContextMenu(True)
         self.save_team.setObjectName("save_team")
         self.save_team.triggered.connect(self.file_save)
-        # EVALUATETEAM
+      
         self.evaluate_team = QtWidgets.QAction(MainWindow)
         self.evaluate_team.setShortcutVisibleInContextMenu(True)
         self.evaluate_team.setObjectName("evaluate_team")
         self.evaluate_team.triggered.connect(self.file_evaluate)
-        # QUITWINDOW
+    
         self.actionQuit = QtWidgets.QAction(MainWindow)
         self.actionQuit.setObjectName("actionQuit")
         self.actionQuit.triggered.connect(self.quit)
@@ -443,16 +432,16 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        # DOUBLE CLICK
+      
         self.availplayers_lw.itemDoubleClicked.connect(self.removelist1)
         self.selectedplayers_lw.itemDoubleClicked.connect(self.removelist2)
 
-        # -----stats of player
+       
         self.stats = {}
 
         self.new_screen.savename.clicked.connect(self.namechange)
 
-        # RADIOBUTTONS  CLICK
+      
         self.bat_rb.clicked.connect(self.load_names)
         self.wk_rb.clicked.connect(self.load_names)
         self.bow_rb.clicked.connect(self.load_names)
@@ -531,7 +520,7 @@ class Ui_MainWindow(object):
             self.team_name.setText(self.tname)
             self.newDialog.close()
 
-    # TO RESET ALL COUNTS AND LISTS
+
     def reset(self):
         self.enablebuttons()
         self.load_names()
@@ -553,24 +542,24 @@ class Ui_MainWindow(object):
 
         self.selectedplayers_lw.clear()
 
-        # SAVE TEAM MENU
+      
 
     def file_save(self):
-        if not self.error():  # IF THERE IS AN ERROR
+        if not self.error():  
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setInformativeText(' 😪Insufficient Players OR Points !!')
             msg.setWindowTitle("Selection Error")
             msg.exec_()
-        elif self.error():  # IF NO ERROR
+        elif self.error(): 
             try:
                 fantcurs.execute("SELECT DISTINCT name FROM teams;")
                 x = fantcurs.fetchall()
                 for i in x:
-                    if self.team_name.text() == i[0]:  # CHECKING IF THE TEAMNAME ALREADY EXISTS
+                    if self.team_name.text() == i[0]: 
                         logging.debug('Updating already there')
                         fantcurs.execute(
-                            "DELETE  FROM teams WHERE name='" + self.team_name.text() + "';")  # DELETING TO UPDATE TEAM
+                            "DELETE  FROM teams WHERE name='" + self.team_name.text() + "';")  
             except:
                 logging.debug('error')
             for i in range(self.selectedplayers_lw.count()):
@@ -590,7 +579,7 @@ class Ui_MainWindow(object):
         else:
             logging.debug('---error in operation')
 
-    # QUITING METHOD
+   
     def quit(self):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Critical)
@@ -600,7 +589,7 @@ class Ui_MainWindow(object):
         logging.debug('exit')
         sys.exit()
 
-    # ON RADIOBUTTONS CLICKED
+   
     def load_names(self):
         Batsman = 'BAT'
         WicketKeeper = 'WK'
@@ -689,7 +678,7 @@ class Ui_MainWindow(object):
                 item.setFont(font)
                 self.availplayers_lw.addItem(item)
 
-    def removelist1(self, item):  # REMOVE FROM AVAILABLE PLAYERS AND ADD TO SELECTED PLAYERS
+    def removelist1(self, item):  
         self.conditions_1(item.text())
         self.availplayers_lw.takeItem(self.availplayers_lw.row(item))
         self.selectedplayers_lw.addItem(item.text())
@@ -697,7 +686,7 @@ class Ui_MainWindow(object):
         self.list1.append(item.text())
         self.error()
 
-    def conditions_1(self, cat):  # Adding and Deducting respective points from points_calculator.py
+    def conditions_1(self, cat):  
         self.avail_points -= self.stats[cat]
         self.used_points += self.stats[cat]
         if cat in self.a:
@@ -716,7 +705,7 @@ class Ui_MainWindow(object):
         self.alrcount.setText(str(self.alrdscount))
         self.wicketcount.setText(str(self.wicketerscount))
 
-    def conditions_2(self, cat):  # Adding and Deducting respective poinrs from points_calculator.py
+    def conditions_2(self, cat):  
         self.avail_points += self.stats[cat]
         self.used_points -= self.stats[cat]
         if cat in self.a:
@@ -735,7 +724,7 @@ class Ui_MainWindow(object):
         self.alrcount.setText(str(self.alrdscount))
         self.wicketcount.setText(str(self.wicketerscount))
 
-    def removelist2(self, item):  # REMOVE FROM SELECTED PLAYERS AND ADD TO AVAIALBLE PLAYERS
+    def removelist2(self, item):  
         self.selectedplayers_lw.takeItem(self.selectedplayers_lw.row(item))
         self.availplayers_lw.addItem(item.text())
         self.list1.remove(item.text())
@@ -743,7 +732,7 @@ class Ui_MainWindow(object):
         self.totalcount = self.selectedplayers_lw.count()
         self.conditions_2(item.text())
 
-    def openteam(self):  # upon open team selected
+    def openteam(self): 
         self.reset()
         teamname = self.open_screen.open_cb.currentText()
         self.team_name.setText(teamname)
@@ -777,7 +766,7 @@ class Ui_MainWindow(object):
         self.ar_rb.setEnabled(True)
         self.wk_rb.setEnabled(True)
 
-    def error(self):  # Handling and displaying error messages
+    def error(self):  
         msg = QMessageBox()
         if self.avail_points <= 0:
             self.points_available.setText('0')
@@ -788,7 +777,7 @@ class Ui_MainWindow(object):
             return 0
         if self.wicketerscount > 1:
             msg.setIcon(QMessageBox.Critical)
-            # msg.setText("Error")
+            
             msg.setInformativeText('Only 1 wicketkeeper is allowed!')
             msg.setWindowTitle("Error")
             msg.exec_()
