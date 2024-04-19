@@ -1,4 +1,4 @@
-                                                                	 Fantasy Cricket Game 
+                                                              	 Fantasy Cricket Game 
 
 The game has following set of problem statement:
 
