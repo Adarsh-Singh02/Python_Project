@@ -1,18 +1,9 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'open.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sqlite3
 match=sqlite3.connect('fandatabase.db')
 matchcur=match.cursor()
 
-#Dialog window for open
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -42,7 +33,7 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-        teams= matchcur.execute("SELECT DISTINCT name FROM teams;")  # fetching team names
+        teams= matchcur.execute("SELECT DISTINCT name FROM teams;")  
         y= teams.fetchall()
         for i in y:
             self.open_cb.addItem(i[0])
