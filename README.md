@@ -9,6 +9,7 @@ Sample of Rules
 Batting 
 Bowling 
 Fielding 
+
 ● 1 point for 2 runs scored 
 
 ● Additional 5 points for half century
